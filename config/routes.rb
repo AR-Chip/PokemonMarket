@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   resources :pokemons, only: %i[index show]
   get "about", to: "static_pages#about"
   get "contactus", to: "static_pages#contactus"
+
+  root to: "pokemons#index"
+  get "*path", to: redirect("/")
 end
