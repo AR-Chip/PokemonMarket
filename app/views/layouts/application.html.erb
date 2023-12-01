@@ -22,6 +22,15 @@
         </ul>
       </nav>
     </header>
+
+    <div class="searchbar">
+      <%= form_tag(search_results_path, method: "get") do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search")%>
+      <% end %>
+    </div>
+
     <%= yield %>
   </body>
 </html>

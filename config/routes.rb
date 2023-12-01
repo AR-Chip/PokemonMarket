@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "search/results"
   resources :pokemons, only: %i[index show]
   resources :types, only: %i[index show]
 
@@ -6,6 +7,11 @@ Rails.application.routes.draw do
   get "about", to: "static_pages#about"
   get "contactus", to: "static_pages#contactus"
 
+  # Search Results
+  # get "search/results"
+  get "search_results", to: "search#results"
+
+  # Home Page
   root to: "pokemons#index"
 
   # Redirect to Root if Page doesn't Exist
