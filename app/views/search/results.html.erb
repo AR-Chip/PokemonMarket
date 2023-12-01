@@ -1,0 +1,8 @@
+<% @pokemons.each do |pokemon| %>
+        <li>
+            <img src="<%= pokemon.image %>" alt="Image of <%= pokemon.name %>" width="65">
+            <h3><%= link_to pokemon.name, pokemon %></h3>
+            <p>$<%= pokemon.price %></p>
+        </li>
+<% end %>
+<%= paginate @pokemons %>
