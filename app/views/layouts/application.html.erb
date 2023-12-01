@@ -26,8 +26,10 @@
     <div class="searchbar">
       <%= form_tag(search_results_path, method: "get") do %>
         <%= label_tag(:q, "Search for:") %>
-        <%= text_field_tag(:q) %>
-        <%= submit_tag("Search")%>
+        <%= text_field_tag(:q, params[:q]) %>
+        <%= label_tag(:type, "Filter by Type:") %>
+        <%= select_tag(:type, options_for_select(Type.all.collect { |c| [c.name, c.id] }, params[:type]), include_blank: true) %>
+        <%= submit_tag("Search") %>
       <% end %>
     </div>
 

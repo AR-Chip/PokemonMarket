@@ -1,5 +1,3 @@
-<h3>Your query of "<%= @query %>" has returned <%= pluralize(@pokemons.count, 'results') %>.</h3>
-
 <% @pokemons.each do |pokemon| %>
         <li>
             <img src="<%= pokemon.image %>" alt="Image of <%= pokemon.name %>" width="65">
