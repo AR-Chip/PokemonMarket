@@ -1,18 +1,28 @@
+require 'csv'
+
 Pokemon.destroy_all
 Type.destroy_all
 
-# (1..150).each do |id|
-#   pokemon_name = PokeApi.get(pokemon: id)
+csv_data = File.read(Rails.root.join('db/pokemon-description.csv'))
+pokemons_csv = CSV.parse(csv_data, headers: true, encoding: 'utf-8')
 
-#   puts pokemon.name
-#   # Pokemon.create!(
-#   #   name:       pokemon.name.capitalize,
-#   #   base_price: rand(10.0..100.0) # Set a random base price for each Pokémon
-#   # )
-# end
+(1..151).each do |i|
+    pokemon_api = PokeApi.get(pokemon: i)
 
-pokemon_name = PokeApi.get(pokemon: 3).name
-pokemon_description = PokeApi.get(characteristic: 3).descriptions[7].description
+    pokemon = Pokemon.create(
+        name: pokemon_api.name.capitalize,
+        price: rand(10.0..100.0),
+        pokedex_number: i,
+        description: pokemons_csv[i - 1]['pokemon-description'],
+        quantity: rand(1..30),
+        image: pokemons_csv[i - 1]['pokemon-image-src']
+    )
 
-puts pokemon_name
-puts pokemon_description
+    pokemon_api.types.each do |type|
+        type = Type.find_or_create_by(name: type.type.name)
+        type.pokemons << pokemon
+    end
+end
+
+puts "Created #{Pokemon.count} Pokemons"
+puts "Created #{Type.count} Types"
