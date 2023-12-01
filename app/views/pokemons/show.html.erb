@@ -1,2 +1,16 @@
-<h1>Pokemons#show</h1>
-<p>Find me in app/views/pokemons/show.html.erb</p>
+<h1><%= @pokemon.name %></h1>
+
+<img src="<%= @pokemon.image %>" alt="Image of <%= @pokemon.name %>" width="100">
+
+<ul>
+    <li>Pokedex Number: <%= @pokemon.pokedex_number %></li>
+    <li>Types: 
+    <% @pokemon.types.each do |type|%>
+        <%= link_to type.name.capitalize, type %>,
+    <% end %>
+    </li>
+    <li>Price: $<%= @pokemon.price %></li>
+    <li>Quantity: <%= @pokemon.quantity %> pokemons left</li>
+</ul>
+
+<p><%= @pokemon.description %></p>

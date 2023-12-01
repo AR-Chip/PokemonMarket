@@ -1,5 +1,6 @@
 require 'csv'
 
+PokemonType.destroy_all
 Pokemon.destroy_all
 Type.destroy_all
 
@@ -11,7 +12,7 @@ pokemons_csv = CSV.parse(csv_data, headers: true, encoding: 'utf-8')
 
     pokemon = Pokemon.create(
         name: pokemon_api.name.capitalize,
-        price: rand(10.0..100.0),
+        price: rand(10.0..100.0).round(2),
         pokedex_number: i,
         description: pokemons_csv[i - 1]['pokemon-description'],
         quantity: rand(1..30),
