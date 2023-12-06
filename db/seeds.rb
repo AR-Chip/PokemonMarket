@@ -3,6 +3,7 @@ require "csv"
 PokemonType.destroy_all
 Pokemon.destroy_all
 Type.destroy_all
+AdminUser.destroy_all
 
 csv_data = File.read(Rails.root.join("db/pokemon-description.csv"))
 pokemons_csv = CSV.parse(csv_data, headers: true, encoding: "utf-8")
@@ -27,3 +28,7 @@ end
 
 puts "Created #{Pokemon.count} Pokemons"
 puts "Created #{Type.count} Types"
+if Rails.env.development?
+  AdminUser.create!(email: "admin@example.com", password: "password",
+                    password_confirmation: "password")
+end
