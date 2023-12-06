@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'types/index'
+  get 'types/show'
+  get 'search/results'
+  get 'pokemons/index'
+  get 'pokemons/show'
   get "search/results"
   resources :pokemons, only: %i[index show]
   resources :types, only: %i[index show]

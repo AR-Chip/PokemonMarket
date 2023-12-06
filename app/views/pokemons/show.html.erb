@@ -4,7 +4,7 @@
 
 <ul>
     <li>Pokedex Number: <%= @pokemon.pokedex_number %></li>
-    <li>Types: 
+    <li>Types:
     <% @pokemon.types.each do |type|%>
         <%= link_to type.name.capitalize, type %>,
     <% end %>

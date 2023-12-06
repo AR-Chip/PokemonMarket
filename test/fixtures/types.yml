@@ -2,8 +2,8 @@
 
 one:
   type_id: 1
-  type: 
+  name: MyString
 
 two:
   type_id: 1
-  type: 
+  name: MyString

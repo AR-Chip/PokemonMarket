@@ -2,14 +2,20 @@
 
 one:
   pokemon_id: 1
-  description: MyString
+  name: MyText
+  description: MyText
   pokedex_number: 1
   price: 1.5
   quantity: 1
+  sale_percentage: 1.5
+  image: MyString
 
 two:
   pokemon_id: 1
-  description: MyString
+  name: MyText
+  description: MyText
   pokedex_number: 1
   price: 1.5
   quantity: 1
+  sale_percentage: 1.5
+  image: MyString

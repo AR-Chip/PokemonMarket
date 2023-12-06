@@ -1,8 +1,8 @@
-class CreateTypes < ActiveRecord::Migration[7.1]
+class CreateTypes < ActiveRecord::Migration[7.0]
   def change
     create_table :types do |t|
       t.integer :type_id
-      t.string :type
+      t.string :name
 
       t.timestamps
     end
