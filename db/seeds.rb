@@ -4,6 +4,7 @@ PokemonType.destroy_all
 Pokemon.destroy_all
 Type.destroy_all
 AdminUser.destroy_all
+StaticPage.destroy_all
 
 csv_data = File.read(Rails.root.join("db/pokemon-description.csv"))
 pokemons_csv = CSV.parse(csv_data, headers: true, encoding: "utf-8")
@@ -32,3 +33,7 @@ if Rails.env.development?
   AdminUser.create!(email: "admin@example.com", password: "password",
                     password_confirmation: "password")
 end
+
+# For Editing Static pages
+StaticPage.create(title: "About Us", content: "Welcome to the About Us page content.")
+StaticPage.create(title: "Contact Us", content: "Welcome to the Contact Us page content.")
