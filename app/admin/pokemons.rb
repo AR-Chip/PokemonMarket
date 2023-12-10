@@ -31,6 +31,7 @@ ActiveAdmin.register Pokemon do
       f.input :type_ids
       f.input :created_at
       f.input :updated_at
+      f.input :pokemon_image, as: :file, hint: f.object.pokemon_image.present? ? image_tag(f.object.pokemon_image) : nil
     end
     f.actions
   end

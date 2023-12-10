@@ -1,6 +1,6 @@
 <h1><%= @pokemon.name %></h1>
 
-<img src="<%= @pokemon.image %>" alt="Image of <%= @pokemon.name %>" width="100">
+<img src="<%= @pokemon.pokemon_image.present? ? url_for(@pokemon.pokemon_image) : @pokemon.image %>" alt="Image of <%= @pokemon.name %>" width="100">
 
 <ul>
     <li>Pokedex Number: <%= @pokemon.pokedex_number %></li>

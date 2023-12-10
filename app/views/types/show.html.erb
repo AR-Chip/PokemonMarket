@@ -3,7 +3,7 @@
 <ul>
     <% @pokemons.each do |pokemon| %>
         <li>
-            <img src="<%= pokemon.image %>" width="65" alt="Image of <%= pokemon.name %>">
+            <img src="<%= pokemon.pokemon_image.present? ? url_for(pokemon.pokemon_image) : pokemon.image %>" width="65" alt="Image of <%= pokemon.name %>">
             <h3><%= link_to pokemon.name, pokemon %></h3>
             <p>$<%= pokemon.price %></p>
         </li>

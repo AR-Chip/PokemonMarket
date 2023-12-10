@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'types/index'
-  get 'types/show'
-  get 'search/results'
-  get 'pokemons/index'
-  get 'pokemons/show'
-  get "search/results"
+  
   resources :pokemons, only: %i[index show]
   resources :types, only: %i[index show]
 
@@ -20,7 +15,4 @@ Rails.application.routes.draw do
 
   # Home Page
   root to: "pokemons#index"
-
-  # Redirect to Root if Page doesn't Exist
-  get "*path", to: redirect("/")
 end
