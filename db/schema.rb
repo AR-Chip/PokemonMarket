@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_10_000210) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_10_061930) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -65,6 +65,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_000210) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.float "tax"
+    t.float "subtotal"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pokemon_orders", force: :cascade do |t|
+    t.integer "pokemon_id", null: false
+    t.integer "order_id", null: false
+    t.integer "quantity"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_pokemon_orders_on_order_id"
+    t.index ["pokemon_id"], name: "index_pokemon_orders_on_pokemon_id"
+  end
+
   create_table "pokemon_types", force: :cascade do |t|
     t.integer "pokemon_id", null: false
     t.integer "type_id", null: false
@@ -87,6 +106,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_000210) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.float "pst"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "static_pages", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -103,6 +130,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_000210) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "pokemon_orders", "orders"
+  add_foreign_key "pokemon_orders", "pokemons"
   add_foreign_key "pokemon_types", "pokemons"
   add_foreign_key "pokemon_types", "types"
 end

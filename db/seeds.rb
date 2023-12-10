@@ -18,6 +18,7 @@ pokemons_csv = CSV.parse(csv_data, headers: true, encoding: "utf-8")
     pokedex_number: i,
     description:    pokemons_csv[i - 1]["pokemon-description"],
     quantity:       rand(1..30),
+    sale_percentage: 0,
     image:          pokemons_csv[i - 1]["pokemon-image-src"]
   )
 
