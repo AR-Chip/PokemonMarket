@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_date: 2023-12-09 23:47:32
+  tax: 1.5
+  subtotal: 1.5
+  status: MyString
+
+two:
+  order_date: 2023-12-09 23:47:32
+  tax: 1.5
+  subtotal: 1.5
+  status: MyString
