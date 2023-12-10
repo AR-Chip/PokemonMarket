@@ -27,11 +27,25 @@
       <%= form_tag(search_results_path, method: "get") do %>
         <%= label_tag(:q, "Search for:") %>
         <%= text_field_tag(:q, params[:q]) %>
+
         <%= label_tag(:type, "Filter by Type:") %>
         <%= select_tag(:type, options_for_select(Type.all.collect { |c| [c.name, c.id] }, params[:type]), include_blank: true) %>
+
+        <%= check_box_tag(:sale_percentage, 'greater_than_zero', params[:sale_percentage] == 'greater_than_zero') %>
+        <%= label_tag(:sale_percentage, "Sale") %>
+
+        <%= check_box_tag(:created_at, 'yes', params[:created_at] == 'yes') %>
+        <%= label_tag(:created_at, "Recently Added") %>
+
+        <%= check_box_tag(:updated_at, 'yes', params[:updated_at] == 'yes') %>
+        <%= label_tag(:updated_at, "Recently Updated") %>
+
         <%= submit_tag("Search") %>
       <% end %>
     </div>
+
+
+
 
     <%= yield %>
   </body>

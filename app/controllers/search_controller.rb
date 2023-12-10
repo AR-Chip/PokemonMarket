@@ -1,14 +1,23 @@
 class SearchController < ApplicationController
   def results
     @query = params[:q]
-    # @pokemons = Pokemon.where("name LIKE ?", "%#{@query}%").page(params[:page]).per(20)
-
-    # Filter by category if :category parameter is present
     if params[:type].present?
       @type = Type.find(params[:type])
-      @pokemons = @type.pokemons.where("name LIKE ?", "%#{@query}%").page(params[:page]).per(20)
+      @pokemons = @type.pokemons
     else
-      @pokemons = Pokemon.where("name LIKE ?", "%#{@query}%").page(params[:page]).per(20)
+      @pokemons = Pokemon.all
     end
+
+    if params[:sale_percentage] == "greater_than_zero"
+      @pokemons = @pokemons.where("sale_percentage > ?", 0)
+    elsif params[:sale_percentage] == "equal_to_zero"
+      @pokemons = @pokemons.where(sale_percentage: 0)
+    end
+
+    @pokemons = @pokemons.where("created_at >= ?", 3.days.ago) if params[:created_at] == "yes"
+
+    @pokemons = @pokemons.where("updated_at >= ?", 3.days.ago) if params[:updated_at] == "yes"
+
+    @pokemons = @pokemons.where("name LIKE ?", "%#{@query}%").page(params[:page]).per(20)
   end
 end
