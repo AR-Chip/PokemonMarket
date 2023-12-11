@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_11_043002) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_11_060001) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -134,7 +134,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_043002) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "username"
     t.string "first_name"
     t.string "last_name"
     t.string "street_address"

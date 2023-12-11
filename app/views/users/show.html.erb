@@ -1,0 +1,16 @@
+<h2>User Information</h2>
+
+<%= link_to "Edit user information", edit_user_registration_path %>
+
+<h3>Account Information</h3>
+<p>Email: <%= @user.email %></p>
+
+<h3>Personal Information</h3>
+<p>First name: <%= @user.first_name %></p>
+<p>Last name: <%= @user.last_name %></p>
+
+<h3>Address Information</h3>
+<p>Street address: <%= @user.street_address %></p>
+<p>City: <%= @user.city %></p>
+<p>Province: <%= @user.province.name %></p>
+<p>Postal code: <%= @user.postal_code %></p>
