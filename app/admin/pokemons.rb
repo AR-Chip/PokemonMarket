@@ -1,6 +1,6 @@
 ActiveAdmin.register Pokemon do
   permit_params :pokemon_id, :name, :description, :pokedex_number, :price, :quantity,
-                :sale_percentage, :image, :type_ids, :created_at, :updated_at
+                :sale_percentage, :image, :type_ids, :created_at, :updated_at, :pokemon_image
 
   index do
     selectable_column
@@ -31,7 +31,7 @@ ActiveAdmin.register Pokemon do
       f.input :type_ids
       f.input :created_at
       f.input :updated_at
-      f.input :pokemon_image, as: :file, hint: f.object.pokemon_image.present? ? image_tag(f.object.pokemon_image) : nil
+      f.input :pokemon_image, as: :file, hint: f.object.pokemon_image.present? ? image_tag(f.object.pokemon_image.variant(resize_to_limit:[250, 250])) : nil
     end
     f.actions
   end

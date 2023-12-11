@@ -5,6 +5,7 @@ ruby "3.1.2"
 gem 'poke-api-v2'
 gem 'kaminari'
 
+gem "image_processing", "~> 1.2"
 gem 'activeadmin', '2.11'
 gem 'devise'
 
