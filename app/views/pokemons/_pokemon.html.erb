@@ -1,0 +1,4 @@
+<img src="<%= pokemon.pokemon_image.present? ? url_for(pokemon.pokemon_image) : pokemon.image %>" alt="Image of <%= pokemon.name %>" width="65">
+<h3><%= link_to pokemon.name, pokemon %></h3>
+<p>$<%= pokemon.price %></p>
+<p><%= link_to 'Add to cart', add_to_cart_path(pokemon.id), data: { "turbo-method": :post } %></p>
