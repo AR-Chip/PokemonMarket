@@ -1,6 +1,6 @@
 ActiveAdmin.register Pokemon do
   permit_params :pokemon_id, :name, :description, :pokedex_number, :price, :quantity,
-                :sale_percentage, :image, :type_ids, :created_at, :updated_at, :pokemon_image
+                :sale_percentage, :image, :created_at, :updated_at, :pokemon_image, type_ids: []
 
   index do
     selectable_column
@@ -11,7 +11,9 @@ ActiveAdmin.register Pokemon do
     column :price
     column :quantity
     column :sale_percentage
-    column :ttype_ids
+    column :types do |pokemon|
+      pokemon.types.map(&:name).join(", ")
+    end
     column :image
     column :created_at
     column :updated_at
@@ -28,10 +30,11 @@ ActiveAdmin.register Pokemon do
       f.input :quantity
       f.input :sale_percentage
       f.input :image
-      f.input :type_ids
+      f.input :types, as: :check_boxes, collection: Type.all
       f.input :created_at
       f.input :updated_at
-      f.input :pokemon_image, as: :file, hint: f.object.pokemon_image.present? ? image_tag(f.object.pokemon_image.variant(resize_to_limit:[250, 250])) : nil
+      f.input :pokemon_image, as:   :file,
+                              hint: f.object.pokemon_image.present? ? image_tag(f.object.pokemon_image.variant(resize_to_limit: [250, 250])) : nil
     end
     f.actions
   end
