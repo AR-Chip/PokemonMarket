@@ -1,0 +1,32 @@
+Step 1: Install Docker for Desktop
+Step 2: Configure Docker for Desktop for (Resources > WSL Integration) for Ubuntu WSL
+
+Step 3: Create Docker file
+Contents of "Dockerfile" (No extension)
+
+```
+FROM ruby:3.1.2
+
+WORKDIR /app
+
+RUN apt-get update -qq && apt-get install -y nodejs
+
+RUN gem install rails bundler
+
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle install
+
+COPY . .
+
+RUN rails assets:precompile RAILS_ENV=production
+RUN rails db:create db:migrate db:seed
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
+```
+
+Step 4:
+RUN docker build -t pokemon_market_docker .
+
+Step 5:
+docker run -p 3000:3000 pokemon_market_docker
