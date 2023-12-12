@@ -1,0 +1,87 @@
+# AWS Ubuntu Setup
+1. Run these commands:
+  sudo apt-get update
+  sudo apt-get upgrade -y
+
+  # Pre-reqs
+  sudo apt install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  sudo apt-get update
+  sudo apt-get upgrade -y
+
+  # Testing Installation
+  sudo apt install docker-ce
+  sudo docker run hello-world
+
+  # Install Docker Compose
+  sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  docker-compose --version
+
+
+
+
+
+# Ruby on Rails Portion
+Step 1. Create "Dockerfile" with this content
+
+'''
+# Use an official Ruby runtime as the base image
+FROM ruby:3.1.2
+
+# Set working directory in the container
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update -qq && apt-get install -y nodejs
+
+# Copy Gemfile and Gemfile.lock to the container
+COPY Gemfile Gemfile.lock ./
+
+# Install gems
+RUN gem install bundler && bundle install
+RUN rails db:create db:migrate db:seed
+
+# Copy the rest of the application code to the container
+COPY . .
+
+# Expose port 3000
+EXPOSE 3000
+
+# Start the Rails server
+CMD ["rails", "server", "-b", "0.0.0.0"]
+'''
+
+Step 2. Create "docker-compose.yml" file with this content
+
+'''
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  postgres_data:
+'''
+
+Step 3: Run these commands
+docker-compose build
+docker-compose run web rake db:create
+docker-compose run web rake db:migrate
+docker-compose run web rake db:seed
+
+Step 4: To Start server run this command
+docker-compose up
+
