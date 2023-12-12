@@ -59,13 +59,20 @@ Step 2. Create "docker-compose.yml" file with this content
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        PUBLISHABLE_KEY: ${PUBLISHABLE_KEY}  # Set build arg for PUBLISHABLE_KEY
+        SECRET_KEY: ${SECRET_KEY}  # Set build arg for SECRET_KEY
     ports:
       - "3000:3000"
     volumes:
       - .:/app
     depends_on:
       - db
+    environment:  # Define environment variables for the web service
+      PUBLISHABLE_KEY: ${PUBLISHABLE_KEY}  # Set environment variable for PUBLISHABLE_KEY
+      SECRET_KEY: ${SECRET_KEY}  # Set environment variable for SECRET_KEY
   db:
     image: postgres:latest
     volumes:
@@ -74,6 +81,7 @@ services:
       - "5432:5432"
 volumes:
   postgres_data:
+
 '''
 
 Step 3: Run these commands
