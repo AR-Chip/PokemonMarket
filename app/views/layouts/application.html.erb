@@ -8,6 +8,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <script src="https://js.stripe.com/v3/"></script>
   </head>
 
   <body>
@@ -71,6 +73,8 @@
                 <% end %>
             </ul>
             <p>Subtotal: $<%= @subtotal %></p>
+
+            <%= button_to "Checkout", checkout_create_path, method: :post, params: { cart: session[:cart] }, remote: true %>
           <% end %>
       </details>
     </p>
