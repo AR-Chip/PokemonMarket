@@ -14,6 +14,7 @@
 
   <body>
   <header>
+      <%= javascript_include_tag 'checkout' %>
       <h1>Recipe Recipe</h1>
       <nav>
         <ul>
@@ -74,7 +75,9 @@
             </ul>
             <p>Subtotal: $<%= @subtotal %></p>
 
-            <%= button_to "Checkout", checkout_create_path, method: :post, remote: true %>
+            <!-- <%= button_to "Checkout", checkout_create_path, method: :post, remote: true, data: {turbo: false}, format: :js %> -->
+
+            <button id="checkoutButton">Checkout</button>
           <% end %>
       </details>
     </p>

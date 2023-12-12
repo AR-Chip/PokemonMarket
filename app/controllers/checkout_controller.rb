@@ -32,25 +32,8 @@ class CheckoutController < ApplicationController
             cancel_url: checkout_cancel_url
         )
 
-        # redirect_to @session.url, allow_other_host: true
-        # return 
-
-        # respond_to do |format|
-        #     format.js { render js: "" } # Add an empty response for JS format
-        #     format.html { redirect_to @session.url, allow_other_host: true } # Redirect to the session URL for HTML format with allow_other_host option
-        # end
-
         respond_to do |format|
-            format.js do
-                const stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
-
-                stripe.redirectToCheckout({
-                sessionId: '<%= @session.id %>'
-                }).then(function(result) {
-                console.log(result.error.message);
-                });
-            end
+            format.js
         end
-
     end
 end
