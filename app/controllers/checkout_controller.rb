@@ -2,7 +2,7 @@ class CheckoutController < ApplicationController
     def create
         products = []
 
-        params[:cart].each do |cart_item|
+        session[:cart].each do |cart_item|
             pokemon = Pokemon.find(cart_item["id"])
             if !pokemon.nil?
                 products << { 
@@ -35,9 +35,22 @@ class CheckoutController < ApplicationController
         # redirect_to @session.url, allow_other_host: true
         # return 
 
+        # respond_to do |format|
+        #     format.js { render js: "" } # Add an empty response for JS format
+        #     format.html { redirect_to @session.url, allow_other_host: true } # Redirect to the session URL for HTML format with allow_other_host option
+        # end
+
         respond_to do |format|
-            format.js # Add an empty response for JS format
-            # format.html { redirect_to @session.url, allow_other_host: true } # Redirect to the session URL for HTML format with allow_other_host option
+            format.js do
+                const stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
+
+                stripe.redirectToCheckout({
+                sessionId: '<%= @session.id %>'
+                }).then(function(result) {
+                console.log(result.error.message);
+                });
+            end
         end
+
     end
 end

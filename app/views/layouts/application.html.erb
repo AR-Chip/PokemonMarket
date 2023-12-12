@@ -74,7 +74,7 @@
             </ul>
             <p>Subtotal: $<%= @subtotal %></p>
 
-            <%= button_to "Checkout", checkout_create_path, method: :post, params: { cart: session[:cart] }, remote: true %>
+            <%= button_to "Checkout", checkout_create_path, method: :post, remote: true %>
           <% end %>
       </details>
     </p>

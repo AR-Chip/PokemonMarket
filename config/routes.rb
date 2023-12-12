@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   delete 'pokemons/remove_from_cart/:id', to: 'pokemons#remove_from_cart', as: 'remove_from_cart'
   post 'pokemons/modify_cart_quantity', to: 'pokemons#modify_cart_quantity', as: 'modify_cart_quantity'
 
-  get "up" => "rails/health#show", as: :rails_health_check
   get "about", to: "static_pages#about"
   get "contactus", to: "static_pages#contactus"
 
