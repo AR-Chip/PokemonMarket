@@ -65,7 +65,7 @@
                   <li>
                     <%= form_tag(modify_cart_quantity_path, method: "post") do %>
                       <%= cart_item[:pokemon].name %> -
-                      <%= text_field_tag(:quantity, cart_item[:qty]) %> pokemons 
+                      <%= number_field_tag(:quantity, cart_item[:qty]) %> pokemons 
                       <%= submit_tag("Update quantity") %>-
                       <%= link_to 'Remove', remove_from_cart_path(cart_item[:pokemon]), data: { "turbo-method": :delete } %>
                       <%= hidden_field_tag(:pokemon_id, cart_item[:pokemon].id) %>

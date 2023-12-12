@@ -24,7 +24,11 @@ class PokemonsController < ApplicationController
   def modify_cart_quantity
     id = params[:pokemon_id].to_i
     new_quantity = params[:quantity].to_i
-    session[:cart][session[:cart].index { |p| p["id"] == id }]["qty"] = new_quantity
+    if new_quantity == 0
+      session[:cart].delete_at(session[:cart].index { |p| p["id"] == id })
+    else
+      session[:cart][session[:cart].index { |p| p["id"] == id }]["qty"] = new_quantity
+    end
     redirect_to root_path
   end
 
