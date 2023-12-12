@@ -75,9 +75,7 @@
             </ul>
             <p>Subtotal: $<%= @subtotal %></p>
 
-            <!-- <%= button_to "Checkout", checkout_create_path, method: :post, remote: true, data: {turbo: false}, format: :js %> -->
-
-            <button id="checkoutButton">Checkout</button>
+            <%= link_to "Checkout", checkout_review_path %> 
           <% end %>
       </details>
     </p>

@@ -1,0 +1,16 @@
+<h1>Order Confirmation</h1>
+<h4>Thank you for shoping with Three Lovers One Team</h4>
+
+<h3>Order #<%= @order.id %></h3>
+<p>Status: <%= @order.status %></p>
+
+<h4>Pokemons</h4>
+<% PokemonOrder.where(order: @order).each do |pokemon_order| %>
+    <p>Pokemon: <%= pokemon_order.pokemon.name %></p>
+    <p>Price: <%= pokemon_order.pokemon.price %></p>
+    <p>Quantity: <%= pokemon_order.quantity %></p>
+<% end %>
+
+<p>Subtotal: $<%= @order.subtotal%></p>
+<p>Tax: $<%= @order.tax %>%</p>
+<p>Total: $<%= (@order.tax + @order.subtotal).round(2) %></p>

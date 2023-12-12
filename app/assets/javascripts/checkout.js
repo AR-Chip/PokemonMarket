@@ -1,11 +1,10 @@
-// Add an event listener to handle the button click
 document.addEventListener('DOMContentLoaded', function() {
-    const checkoutButton = document.getElementById('checkoutButton'); // Change to your button's ID
+    const checkoutButton = document.getElementById('checkoutButton'); 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   
     checkoutButton.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault();
   
       fetch('/checkout/create', {
         method: 'POST',
@@ -15,10 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       })
       .then(response => response.text())
-      .then(jsResponse => eval(jsResponse)) // Evaluate JavaScript response
+      .then(jsResponse => eval(jsResponse))
       .catch(error => {
         console.error('Error:', error);
-        // Handle errors if any
       });
     });
   });

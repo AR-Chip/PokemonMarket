@@ -1,5 +1,7 @@
 require "csv"
 
+PokemonOrder.destroy_all
+Order.destroy_all
 User.destroy_all
 Province.destroy_all
 PokemonType.destroy_all

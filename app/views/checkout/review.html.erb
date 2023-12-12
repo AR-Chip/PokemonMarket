@@ -1,0 +1,31 @@
+<h2>Order Review</h2>
+
+<h3>Items</h3>
+
+<ul>
+    <% @cart.each do |entry| %>
+        <%= form_tag(modify_cart_quantity_path, method: "post") do %>
+            <p><%= entry[:pokemon].name %></p>
+            <p>
+                Quantity: <%= number_field_tag(:quantity, entry[:qty]) %>
+                <%= submit_tag("Update quantity") %>
+            </p>
+            <%= link_to 'Remove', remove_from_cart_path(entry[:pokemon]), data: { "turbo-method": :delete } %>
+            <%= hidden_field_tag(:pokemon_id, entry[:pokemon].id) %>
+            <p>Price: $<%= entry[:pokemon].price * entry[:qty] %></p>
+        <% end %>
+    <% end %>
+</ul>
+
+<h3>Subtotal</h3>
+<p>$<%= @subtotal %></p>
+
+<h3>Taxes</h3>
+<p>PST(<%= (current_user.province.pst * 100).round(0) %>%): $<%= @pst %></p> 
+<p>GST(<%= (@gst_rate * 100).round(0) %>%): $<%= @gst %></p> 
+<p>HST(<%= (current_user.province.hst * 100).round(0) %>%): $<%= @hst %></p> 
+
+<h3>Order Total</h3>
+<p>$<%= (@subtotal + @pst + @gst + @hst).round(2)%></p>
+
+<button id="checkoutButton">Checkout</button>
