@@ -30,7 +30,7 @@ class CheckoutController < ApplicationController
                         name: 'PST',
                         description: 'Provincial sales tax'
                     },
-                    unit_amount: (tax["pst"] * 100).to_i,
+                    unit_amount: (tax["pst"] * 100).round(0).to_i,
                     currency: 'cad',
                 },
                 quantity: 1
@@ -44,7 +44,7 @@ class CheckoutController < ApplicationController
                         name: 'GST',
                         description: 'General sales tax'
                     },
-                    unit_amount: (tax["gst"] * 100).to_i,
+                    unit_amount: (tax["gst"] * 100).round(0).to_i,
                     currency: 'cad',
                 },
                 quantity: 1
@@ -58,7 +58,7 @@ class CheckoutController < ApplicationController
                         name: 'HST',
                         description: 'Harmonized sales tax'
                     },
-                    unit_amount: (tax["hst"] * 100).to_i,
+                    unit_amount: (tax["hst"] * 100).round(0).to_i,
                     currency: 'cad',
                 },
                 quantity: 1
