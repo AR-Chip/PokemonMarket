@@ -98,14 +98,20 @@ class CheckoutController < ApplicationController
     end
 
     def success
-        @session = Stripe::Checkout::Session.retrieve(params[:session_id])
-        @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+        stripe_session = Stripe::Checkout::Session.retrieve(params[:session_id])
+        payment_intent = Stripe::PaymentIntent.retrieve(stripe_session.payment_intent)
 
-        if ((@subtotal + session[:taxes]["pst"] + session[:taxes]["gst"] + session[:taxes]["hst"]) * 100).round(2) == @payment_intent[:amount_received]
+        if !Order.find_by(stripe_session_id: params[:session_id]).nil?
+            redirect_to root_path
+            return
+        end
+
+        if ((@subtotal + session[:taxes]["pst"] + session[:taxes]["gst"] + session[:taxes]["hst"]) * 100).round(2) == payment_intent[:amount_received]
             @order = Order.create(
                 subtotal: @subtotal,
                 tax: (session[:taxes]["pst"] + session[:taxes]["gst"] + session[:taxes]["hst"]).round(2),
-                status: "Paid"
+                status: "Paid",
+                stripe_session_id: params[:session_id]
             )
 
             @order.user = current_user
@@ -121,6 +127,12 @@ class CheckoutController < ApplicationController
 
             session[:cart] = []
             session[:taxes] = {}
+
+            redirect_to order_path(@order)
+            return
+        else
+            redirect_to root_path
+            return
         end
     end
 end

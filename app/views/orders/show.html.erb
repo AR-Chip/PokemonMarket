@@ -5,7 +5,7 @@
 <p>Status: <%= @order.status %></p>
 
 <h4>Pokemons</h4>
-<% PokemonOrder.where(order: @order).each do |pokemon_order| %>
+<% @pokemon_orders.each do |pokemon_order| %>
     <p>Pokemon: <%= pokemon_order.pokemon.name %></p>
     <p>Price: <%= pokemon_order.pokemon.price %></p>
     <p>Quantity: <%= pokemon_order.quantity %></p>
