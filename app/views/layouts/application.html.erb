@@ -33,7 +33,7 @@
             <%= link_to "BROWSE", pokemons_path, :class => "hover" %>
             <%= link_to "ABOUT US", about_path, :class => "hover" %>
             <% if !user_signed_in? %>
-              <%= link_to "Log In", new_session_path(:user), :class => "hover" %>
+              <%= link_to "LOGIN", new_session_path(:user), :class => "hover" %>
             <% else %>
               <%= link_to current_user.first_name, show_user_path, :class => "hover" %>
             <% end %>
