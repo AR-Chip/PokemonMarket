@@ -1,78 +1,80 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="home">
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="user-info">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="field">
+        <%= f.label :email, class: "info-title" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "info" %>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="field">
+        <%= f.label :password, class: "info-title" %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "info" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, class: "info-title" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "info" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password, class: "info-title" %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "info" %>
+      </div>
+
+      <div class="name-display">
+        <div class="field">
+          <%= f.label :first_name, class: "info-title" %><br />
+          <%= f.text_field :first_name, class: "info" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :last_name, class: "info-title" %><br />
+          <%= f.text_field :last_name, class: "info" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :street_address, class: "info-title" %><br />
+        <%= f.text_field :street_address, class: "info" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :city, class: "info-title" %><br />
+        <%= f.text_field :city, class: "info" %>
+      </div>
+
+      <% 
+        provinces = []
+        Province.all.each do |province|
+          provinces << [province.name, province.id]
+        end
+      %>
+
+      <%= f.label :province_id, class: "info-title" %><br />
+      <%= f.select :province_id, provinces, class: "info" %>
+
+      <div class="field">
+        <%= f.label :postal_code, class: "info-title" %><br />
+        <%= f.text_field :postal_code, class: "info" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Update", class: "hover" %>
+      </div>
     <% end %>
+
+    <a class="return" href=<%= show_user_path %>> &lt&lt Return </a>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-    <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :street_address %><br />
-    <%= f.text_field :street_address %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
-
-  <% 
-    provinces = []
-    Province.all.each do |province|
-      provinces << [province.name, province.id]
-    end
-  %>
-
-  <%= f.label :province_id %><br />
-  <%= f.select :province_id, provinces %>
-
-  <div class="field">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>

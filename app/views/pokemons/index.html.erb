@@ -1,6 +1,8 @@
-<h1>Pokemons</h1>
+<%= render "search" %>
 
-<ul>
-    <%= render @pokemons %>
+<div class="home">
+    <ul class="cards-container">
+        <%= render @pokemons %>
+    </ul>
     <%= paginate @pokemons %>
-</ul>
+</div>

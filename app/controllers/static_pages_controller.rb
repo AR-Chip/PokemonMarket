@@ -6,4 +6,8 @@ class StaticPagesController < ApplicationController
   def contactus
     @contact_page = StaticPage.find_by(title: "Contact Us")
   end
+
+  def Home
+    @home_page = StaticPage.find_by(title: "Home")
+  end
 end

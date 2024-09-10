@@ -1,16 +1,30 @@
-<h1><%= @pokemon.name %></h1>
+<%= render "search" %>
 
-<img src="<%= @pokemon.pokemon_image.present? ? url_for(@pokemon.pokemon_image) : @pokemon.image %>" alt="Image of <%= @pokemon.name %>" width="100">
+<div class="pokemon-home">
+    <div class="pokemon-image">
+        <img src="<%= @pokemon.pokemon_image.present? ? url_for(@pokemon.pokemon_image) : @pokemon.image %>" alt="Image of <%= @pokemon.name %>">
+        <h2><%= @pokemon.name %></h2>
+    </div>
+    <div class="right-panel">
+        <div class="pokemon-info">
+            <ul>
+                <li>Pokedex #<%= @pokemon.pokedex_number %></li>
+                <li>Types:
+                    <% (0..@pokemon.types.length - 1).each do |i| %>
+                        <%= @pokemon.types[i].name.capitalize + (i != @pokemon.types.length - 1 ? "," : "") %>
+                    <% end %>
+                </li>
+                <li>Price: $<%= @pokemon.price %></li>
+                <li>Quantity: <%= @pokemon.quantity %> pokemons left</li>
+            </ul>
 
-<ul>
-    <li>Pokedex Number: <%= @pokemon.pokedex_number %></li>
-    <li>Types:
-    <% @pokemon.types.each do |type|%>
-        <%= link_to type.name.capitalize, type %>,
-    <% end %>
-    </li>
-    <li>Price: $<%= @pokemon.price %></li>
-    <li>Quantity: <%= @pokemon.quantity %> pokemons left</li>
-</ul>
+            <h3>Description:</h3>
+            <p><%= @pokemon.description %></p>
+        </div>
+        <%= link_to 'Add to Cart', add_to_cart_path(@pokemon.id), data: { "turbo-method": :post }, class: "hover" %>
+    </div>
+</div>
 
-<p><%= @pokemon.description %></p>
+<a class="return" href=<%= pokemons_path %>> &lt&lt Return </a>
+
+

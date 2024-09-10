@@ -1,16 +1,33 @@
-<h2>User Information</h2>
+<div class="home">
+    <h2>User Information</h2>
+    <div class="user-info">
+        <p class="info-title">Email</p>
+        <p class="info"><%= @user.email %></p>
 
-<%= link_to "Edit user information", edit_user_registration_path %>
+        <div class="name-display">
+            <div>
+                <p class="info-title">First Name</p>
+                <p class="info"><%= @user.first_name %></p>
+            </div>
+            <div>
+                <p class="info-title">Last Name</p>
+                <p class="info"><%= @user.last_name %></p>
+            </div>
+        </div>
+        
+        <p class="info-title">Street Address</p>
+        <p class="info"><%= @user.street_address %></p>
+        <p class="info-title">City</p>
+        <p class="info"><%= @user.city %></p>
+        <p class="info-title">Province</p>
+        <p class="info"><%= @user.province.name.capitalize %></p>
+        <p class="info-title">Postal Code</p>
+        <p class="info"><%= @user.postal_code %></p>
 
-<h3>Account Information</h3>
-<p>Email: <%= @user.email %></p>
-
-<h3>Personal Information</h3>
-<p>First name: <%= @user.first_name %></p>
-<p>Last name: <%= @user.last_name %></p>
-
-<h3>Address Information</h3>
-<p>Street address: <%= @user.street_address %></p>
-<p>City: <%= @user.city %></p>
-<p>Province: <%= @user.province.name %></p>
-<p>Postal code: <%= @user.postal_code %></p>
+        <div class="user-info-buttons">
+            <%= link_to "Edit", edit_user_registration_path, class: "hover" %>
+            <%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "hover" %>
+        </div>
+    </div>
+    <a class="return" href=<%= pokemons_path %>> &lt&lt Return </a>
+</div>

@@ -1,0 +1,12 @@
+<div class="image-home">
+    <%= image_tag asset_path("Pikachu.png"), :id => "pikachu" %>
+    <div class="buttons-container">
+        <a class="menu-item hover" href=<%= pokemons_path %>>BROWSE</a>
+        <a class="menu-item hover" href=<%= about_path %>>ABOUT US</a>
+        <% if !user_signed_in? %>
+            <a class="menu-item hover" href=<%= new_user_session_path %>>LOGIN</a>
+        <% else %>
+            <a class="menu-item hover" href=<%= show_user_path %>><%= current_user.first_name %></a>
+        <% end %>
+    </div>
+</div>

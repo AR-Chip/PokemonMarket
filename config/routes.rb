@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   get "search_results", to: "search#results"
 
   # Home Page
-  root to: "pokemons#index"
+  root to: "static_pages#home"
 end

@@ -13,3 +13,575 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+    font-family: "Jersey 10", sans-serif !important;
+}
+
+body {
+    background-color: #eaeaea;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a:visited {
+    color: inherit;
+}
+
+.hover:hover {
+    transition-duration: 300ms;
+    box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.2);
+}
+
+header {
+    background-color: #3b4cca;
+    width: 100%;
+}
+
+.header-container {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: auto;
+}
+
+header div div {
+    width: 30%
+}
+
+.website-name {
+    width: 10vw;
+    margin-inline: auto;
+}
+
+.website-name a{
+    max-width: fit-content;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    height: 2.5vw;
+}
+
+.website-name h1{
+    font-size: 3.5vw;
+    color: white;
+    margin: 5px 0px 5px 2%;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+nav a {
+    width: 100%;
+    color: white !important;
+    margin: 0 0.4vw;
+    text-align: center;
+    display: block;
+    font-size: 1.3vw;
+    height: fit-content;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+
+nav a:nth-child(1) {
+    background-color: #52bedc;
+}
+
+nav a:nth-child(2) {
+    background-color: #3fb364;
+}
+
+nav a:nth-child(3) {
+    background-color: #de5239;
+}
+
+.image-home {
+    max-width: 60%;
+    margin: 6rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pikachu {
+    width: 45%;
+}
+
+#shadow {
+    width: 40%;
+}
+
+.buttons-container {
+    margin: 0px 10%;
+}
+
+.menu-item {
+    width: 100%;
+    color: white !important;
+    text-align: center;
+    display: block;
+    padding: 0px 4rem;
+    margin-bottom: 15px;
+    font-size: 5rem;
+    height: fit-content;
+    line-height: 4.7rem;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+
+a.menu-item:nth-child(1) {
+    background-color: #52bedc;
+}
+
+a.menu-item:nth-child(2) {
+    background-color: #3fb364;
+}
+
+a.menu-item:nth-child(3) {
+    background-color: #de5239;
+}
+
+.right-container {
+    width: 40%
+}
+
+.login-container {
+    background-color: #de5239;
+    border: 2px solid black;
+    border-radius: 70px;
+    color: white;
+    font-size: 2rem;
+}
+
+.login-container h2 {
+    margin: 0px;
+    font-size: 3.5rem;
+    color: white;
+    text-align: center;
+}
+
+.login-container form {
+    width: 80%;
+    margin-inline: auto;
+}
+
+.login-container form input:not([type=submit]):not([type=checkbox]) {
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 1.3rem;
+}
+
+.login-container form select {
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 1.7rem;
+    background-color: white;
+}
+
+option {
+    width: 90%;
+    margin-left: 2%;
+}
+
+.login-container form input[type=checkbox] {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.login-container form input[type=submit] {
+    display: block;
+    padding: 4% 0;
+    width: 30%;
+    margin: 0px auto 2% auto;
+    font-size: 3rem;
+    background-image: none;
+    background-color: black;
+    box-shadow: none;
+    border: none;
+}
+
+#sign-up-option-status {
+    text-align: center;
+    color: black;
+    width: 100%;
+    font-size: 3rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+#sign-up-option {
+    margin: 10px 0px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+    font-size: 3rem;
+    color: white;
+    background-color: #de5239;
+    border: 2px solid black;
+    border-radius: 50px;
+    line-height: 1.2;
+}
+
+.return {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    color: black;
+    font-size: 3.5rem;
+    text-decoration: none;
+}
+
+.home {
+    width: 60%;
+    background-color: white;
+    border-radius: 30px;
+    margin: 30px auto;
+}
+
+.searchbar {
+    width: 50%;
+    margin-inline: auto;
+    display: flex;
+}
+
+.searchbar input[type=text] {
+    border-radius: 30px 0px 0px 30px;
+    font-size: 1.3vw;
+    width: 85%;
+    border: 1px solid black;
+}
+
+.filter-container {
+    width: 15%;
+    position: relative;
+}
+
+.filter-container p {
+    background-color: #52bedc;
+    color: white;
+    text-align: center;
+    font-size: 1.45vw;
+    margin: 0px;
+    height: 100%;
+    border-radius: 0px 30px 30px 0px;
+    border: 1px solid black;
+}
+
+.filter-dropdown {
+    width: 10vw;
+    position: absolute;
+    display: none;
+    top: 103%;
+    background-color: #52bedc;
+    color: white;
+    z-index: 3;
+    padding-bottom: 0.5vw;
+}
+
+.filter-dropdown label {
+    font-size: 1.3vw;
+    margin: 0.6vw 0.3vw 0.6vw 0.5vw;
+}
+
+.filter-dropdown select {
+    width: 3vw;
+    font-size: 0.9vw;
+    color: black;
+}
+
+.filter-dropdown div {
+    display: flex;
+    align-items: center;
+    height: 1.3vw;
+    margin-left: 0.5vw;
+}
+
+.filter-dropdown div input {
+    width: 0.7vw;
+    height: 0.7vw;
+}
+
+.cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.cards-container li {
+    width: 22%;
+    position: relative;
+}
+
+.card-container {
+    margin-inline: auto;
+    width: 80%;
+}
+
+.card {
+    display: block;
+    width: 100%;
+    margin: 5% auto;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 1px 2px 1px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.card div {
+    display: block;
+    color: black;
+    background-color: #eaeaea;
+    text-align: center;
+    margin: 0;
+    font-size: 1.8vw;
+    line-height: 2.3vw;
+    height: 100%;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 1px 1px 1px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.card-overlay {
+    color: white;
+    width: 80%;
+    height: fit-content;
+    margin-inline: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    bottom: 20.0%;
+    left: 10%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    display: none;
+}
+
+.card-overlay p {
+    width: 100%;
+    margin: 0;
+    font-size: 1.62vw;
+    text-align: center;
+}
+
+.card-overlay p:nth-child(1) {
+    height: 4vw;
+    line-height: 2vw;
+    margin-top: 1.6vw;
+}
+
+.card-overlay a {
+    color: white;
+    padding: 3px 10%;
+    font-size: 1.35vw;
+    background-color: #3b4cca;
+    border-radius: 20px;
+    margin-bottom: 2%;
+}
+
+.card-container:hover .card-overlay {
+    display: block;
+}
+
+nav.pagination{
+    font-size: 1vw;
+    margin: 0.5vw 0 1vw 0;
+}
+
+nav.pagination a {
+    color: black !important;
+    background-image: none;
+    padding: 5px;
+    background-color: white;
+}
+
+.pokemon-home {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+    margin: 30px auto;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.pokemon-image {
+    width: 35%;
+    border: 2px solid #828282;
+    border-radius: 30px;
+    margin: 2vw;
+}
+
+.pokemon-image img {
+    margin: 0 1vw;
+    width: 90%;
+}
+
+.pokemon-image h2 {
+    color: black;
+    font-size: 3vw;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #eaeaea;
+    border-top: 4px solid #828282;
+    border-radius: 0px 0px 30px 30px;
+}
+
+.right-panel {
+    width: 35%;
+    background-color: #eaeaea;
+    border-radius: 30px;
+}
+
+.pokemon-info {
+    width: 90%;
+    margin: 0.5vw auto;
+    background-color: white;
+    border-radius: 30px;
+    color: black;
+}
+
+.pokemon-info ul {
+    list-style: none;
+    padding: 0.5vw 0 0 0;
+    margin: 0 0 0 1vw;
+    font-size: 1.3vw;
+}
+
+.pokemon-info h3 {
+    margin: 1vw 0 0 1vw;
+    padding: 0;
+    font-size: 1.3vw;
+    color: black;
+}
+
+.pokemon-info p {
+    font-size: 1.1vw;
+    color: black;
+    margin: 0 0 0 1vw;
+    padding-bottom: 0.5vw;
+
+}
+
+
+.right-panel a {
+    text-align: center;
+    display: block;
+    color: white;
+    width: 40%;
+    font-size: 1.35vw;
+    background-color: #3b4cca;
+    border-radius: 20px;
+    margin: 1vw auto;
+}
+
+.user-info {
+    width: 27%;
+    margin: auto;
+}
+
+.home h2 {
+    text-align: center;
+    font-size: 2.2vw;
+    color: black;
+    margin: 0;
+}
+
+.info-title {
+    color: black;
+    font-size: 1.4vw;
+    margin: 0;
+}
+
+.info {
+    color: black !important;
+    font-size: 1.1vw !important;
+    margin: 0;
+    border: 2px solid #828282 !important;
+    border-radius: 5px !important;
+    padding-left: 0.3vw !important;
+    width: 100% !important;
+}
+
+.name-display {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-display div {
+    width: 45%;
+}
+
+.user-info-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 0.5vw 0;
+}
+
+.user-info-buttons a {
+    display: block;
+    margin: 0.5vw 0.7vw;
+    font-size: 1.3vw;
+    width: 30%; 
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.user-info-buttons a:nth-child(1) {
+    background-color: #3fb364;
+}
+
+.user-info-buttons a:nth-child(2) {
+    background-color: #de5239;
+}
+
+.user-info select {
+    width: 100%;
+    font-size: 1.2vw;
+    color: black;
+    padding-left: 0.3vw;
+}
+
+.user-info i {
+    display: block;
+    margin: 0;
+    font-size: 0.8vw;
+    line-height: 0.8vw;
+}
+
+.user-info em {
+    font-size: 0.8vw;
+}
+
+.user-info input[type=submit] {
+    display: block;
+    font-size: 1.3vw;
+    margin: 0.5vw auto !important;
+    padding: 0.7vw;
+    width: 30%;
+    color: white;
+    background-image: none;
+    background-color: #3fb364;
+}

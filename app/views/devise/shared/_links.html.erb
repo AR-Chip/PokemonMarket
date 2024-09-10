@@ -3,7 +3,8 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <p id="sign-up-option-status">Don't have an account?</p>
+  <%= link_to "Sign Up", new_registration_path(resource_name), :id => "sign-up-option" %><br />
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

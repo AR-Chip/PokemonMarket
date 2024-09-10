@@ -1,0 +1,23 @@
+<%= form_tag(search_results_path, method: "get") do %>
+    <div class="searchbar">
+        <%= text_field_tag(:q, params[:q], placeholder: "Search (eg. Bulbasaur)", class: "search-field") %>
+        <div class="filter-container">
+            <p>Filter ▾</p>
+            <div class="filter-dropdown">
+                <%= label_tag(:type, "Type:") %>
+                <%= select_tag(:type, options_for_select(Type.all.collect { |c| [c.name.capitalize, c.id] }.insert(0, ["None", ""]), params[:type])) %>
+                
+                <div>
+                    <%= check_box_tag(:sale_percentage, 'greater_than_zero', params[:sale_percentage] == 'greater_than_zero') %>
+                    <%= label_tag(:sale_percentage, "Sale") %>
+                </div>
+
+                <div>
+                    <%= check_box_tag(:created_at, 'yes', params[:created_at] == 'yes') %>
+                    <%= label_tag(:created_at, "Recently Added") %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+

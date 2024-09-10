@@ -4,19 +4,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
     checkoutButton.addEventListener('click', function(event) {
-      event.preventDefault();
+      // event.preventDefault();
   
-      fetch('/checkout/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/javascript',
-          'X-CSRF-Token': csrfToken,
-        }
-      })
-      .then(response => response.text())
-      .then(jsResponse => eval(jsResponse))
-      .catch(error => {
-        console.error('Error:', error);
-      });
+      // fetch('/checkout/create', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/javascript',
+      //     'X-CSRF-Token': csrfToken,
+      //   }
+      // })
+      // .then(response => response.text())
+      // .then(jsResponse => eval(jsResponse))
+      // .catch(error => {
+      //   console.error('Error:', error);
+      // });
+      console.log("a");
     });
   });

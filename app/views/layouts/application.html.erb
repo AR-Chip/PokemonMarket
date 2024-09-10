@@ -9,80 +9,72 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
-    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+    </style>
+
+    <%# <script src="http://js.stripe.com/v3/"></script> %>
   </head>
 
   <body>
   <header>
-      
-      <h1>Recipe Recipe</h1>
-      <nav>
-        <ul>
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Types", types_path %></li>
-          <li><%= link_to "Contact Us", contactus_path %></li>
-          <li><%= link_to "About Us", about_path %></li>
-          <% if !user_signed_in? %>
-            <li><%= link_to "Sign Up", new_user_registration_path %></li>
-            <li><%= link_to "Log In", new_session_path(:user) %></li>
-          <% else %>
-            <li>Hello, <%= link_to current_user.first_name, show_user_path %></li>
-            <li><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete } %></li>
-          <% end %>
-        </ul>
-      </nav>
+    <div class="header-container">
+      <% unless current_page?(root_path) or current_page?(new_session_path(:user)) or current_page?(new_user_registration_path) %>
+        <div></div>
+      <% end %>
+        <div class="website-name">
+          <a href="<%= root_path %>">
+            <%= image_tag asset_path("Pokeball.png"), :class => "logo"%>
+            <h1>PokéMarket</h1>
+          </a>
+        </div>
+        <% unless current_page?(root_path) or current_page?(new_session_path(:user)) or current_page?(new_user_registration_path) %>
+          <nav>
+            <%= link_to "BROWSE", pokemons_path, :class => "hover" %>
+            <%= link_to "ABOUT US", about_path, :class => "hover" %>
+            <% if !user_signed_in? %>
+              <%= link_to "Log In", new_session_path(:user), :class => "hover" %>
+            <% else %>
+              <%= link_to current_user.first_name, show_user_path, :class => "hover" %>
+            <% end %>
+          </nav>
+        <%end%>
+      </div>  
     </header>
 
-    <div class="searchbar">
-      <%= form_tag(search_results_path, method: "get") do %>
-        <%= label_tag(:q, "Search for:") %>
-        <%= text_field_tag(:q, params[:q]) %>
+    <% unless current_page?(root_path) or current_page?(new_session_path(:user)) or current_page?(new_user_registration_path) %>
+      <p>
+        <details>
+            <summary>Shopping Cart</summary>
+            <% if @cart.empty? %>
+                <p>No items in cart.</p>
+            <% else %>
+              <ul>
+                  <% @cart.each do |cart_item| %>
+                    <li>
+                      <%= form_tag(modify_cart_quantity_path, method: "post") do %>
+                        <%= cart_item[:pokemon].name %> -
+                        <%= number_field_tag(:quantity, cart_item[:qty]) %> pokemons 
+                        <%= submit_tag("Update quantity") %>-
+                        <%= link_to 'Remove', remove_from_cart_path(cart_item[:pokemon]), data: { "turbo-method": :delete } %>
+                        <%= hidden_field_tag(:pokemon_id, cart_item[:pokemon].id) %>
+                      <% end %>
+                    </li>
+                  <% end %>
+              </ul>
+              <p>Subtotal: $<%= @subtotal %></p>
 
-        <%= label_tag(:type, "Filter by Type:") %>
-        <%= select_tag(:type, options_for_select(Type.all.collect { |c| [c.name, c.id] }, params[:type]), include_blank: true) %>
-
-        <%= check_box_tag(:sale_percentage, 'greater_than_zero', params[:sale_percentage] == 'greater_than_zero') %>
-        <%= label_tag(:sale_percentage, "Sale") %>
-
-        <%= check_box_tag(:created_at, 'yes', params[:created_at] == 'yes') %>
-        <%= label_tag(:created_at, "Recently Added") %>
-
-        <%= check_box_tag(:updated_at, 'yes', params[:updated_at] == 'yes') %>
-        <%= label_tag(:updated_at, "Recently Updated") %>
-
-        <%= submit_tag("Search") %>
-      <% end %>
-    </div>
-
-    <p>
-      <details>
-          <summary>Shopping Cart</summary>
-          <% if @cart.empty? %>
-              <p>No items in cart.</p>
-          <% else %>
-            <ul>
-                <% @cart.each do |cart_item| %>
-                  <li>
-                    <%= form_tag(modify_cart_quantity_path, method: "post") do %>
-                      <%= cart_item[:pokemon].name %> -
-                      <%= number_field_tag(:quantity, cart_item[:qty]) %> pokemons 
-                      <%= submit_tag("Update quantity") %>-
-                      <%= link_to 'Remove', remove_from_cart_path(cart_item[:pokemon]), data: { "turbo-method": :delete } %>
-                      <%= hidden_field_tag(:pokemon_id, cart_item[:pokemon].id) %>
-                    <% end %>
-                  </li>
-                <% end %>
-            </ul>
-            <p>Subtotal: $<%= @subtotal %></p>
-
-            <%= link_to "Checkout", checkout_review_path %> 
-          <% end %>
-      </details>
-    </p>
+              <%= link_to "Checkout", checkout_review_path %> 
+            <% end %>
+        </details>
+      </p>
+    <% end %>
 
     <%= yield %>
     
-    <p class="notice"><%= notice %></p>
+    <p class="notice"><%= notice %></p><meta name="turbolinks-cache-control" content="no-cache"> 
     <p class="alert"><%= alert %></p>
+
+    <%= javascript_include_tag 'filter-dropdown', "data-turbo-eval": false %>  <!-- This fixed the javascript firing multiple times problem. -->
   </body>
 </html>
