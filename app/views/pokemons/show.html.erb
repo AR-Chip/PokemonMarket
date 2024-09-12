@@ -25,6 +25,8 @@
     </div>
 </div>
 
+<%= render "cart" %>
+
 <a class="return" href=<%= pokemons_path %>> &lt&lt Return </a>
 
-
+<%= javascript_include_tag 'filter-dropdown', "data-turbo-eval": false %>  <!-- This fixed the javascript firing multiple times problem. -->

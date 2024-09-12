@@ -1,33 +1,55 @@
-<h2>Order Review</h2>
+<div class="home">
+    <h2>Shopping Cart</h2>
 
-<h3>Items</h3>
+    <table>
+        <tr>
+            <th>Pokemon</th>
+            <th style="width:15%">Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
 
-<ul>
-    <% @cart.each do |entry| %>
-        <%= form_tag(modify_cart_quantity_path, method: "post") do %>
-            <p><%= entry[:pokemon].name %></p>
-            <p>
-                Quantity: <%= number_field_tag(:quantity, entry[:qty]) %>
-                <%= submit_tag("Update quantity") %>
-            </p>
-            <%= link_to 'Remove', remove_from_cart_path(entry[:pokemon]), data: { "turbo-method": :delete } %>
-            <%= hidden_field_tag(:pokemon_id, entry[:pokemon].id) %>
-            <p>Price: $<%= entry[:pokemon].price * entry[:qty] %></p>
+        <% @cart.each do |entry| %>
+            <tr>
+                <%= form_tag(modify_cart_quantity_path, method: "post") do %>
+                    <td>
+                        <div class="pokemon-details">
+                            <img src="<%= entry[:pokemon].pokemon_image.present? ? url_for(entry[:pokemon].pokemon_image) : entry[:pokemon].image %>" alt="Image of <%= entry[:pokemon].name %>">
+                            <div>
+                                <%= entry[:pokemon].name %>
+                                <%= link_to 'Remove', remove_from_cart_path(entry[:pokemon]), data: { "turbo-method": :delete } %>
+                            </div>
+                        </div>
+                    </td>
+                    <td><%= number_field_tag(:quantity, entry[:qty], class: "quantity") %></td>
+                    <td>$<%= entry[:pokemon].price %></td>
+                    <%= hidden_field_tag(:pokemon_id, entry[:pokemon].id) %>
+                    <td>$<%= (entry[:pokemon].price * entry[:qty]).round(2) %></td>
+                <% end %>
+            </tr>
+            <tr>
+                <td colspan="4"><hr size="2px" color="#828282"></td>
+            </tr>
         <% end %>
-    <% end %>
-</ul>
+    </table>
 
-<h3>Subtotal</h3>
-<p>$<%= @subtotal %></p>
+    <div class="total-calculation">
+        <p>Subtotal: $<%= @subtotal.round(2) %></p>
 
-<h3>Taxes</h3>
-<p>PST(<%= (current_user.province.pst * 100).round(0) %>%): $<%= @pst %></p> 
-<p>GST(<%= (@gst_rate * 100).round(0) %>%): $<%= @gst %></p> 
-<p>HST(<%= (current_user.province.hst * 100).round(0) %>%): $<%= @hst %></p> 
+        <p>Taxes:</p>
+        <div class="taxes">
+            <p>PST(<%= (current_user.province.pst * 100).round(0) %>%): $<%= @pst %></p> 
+            <p>GST(<%= (@gst_rate * 100).round(0) %>%): $<%= @gst %></p> 
+            <p>HST(<%= (current_user.province.hst * 100).round(0) %>%): $<%= @hst %></p> 
+        </div>
 
-<h3>Order Total</h3>
-<p>$<%= (@subtotal + @pst + @gst + @hst).round(2)%></p>
+        <p>Order Total: $<%= (@subtotal + @pst + @gst + @hst).round(2)%></p>
+    </div>
 
-<button id="checkoutButton">Checkout</button>
+    <button id="checkoutButton" class="hover">Checkout</button>
 
-<%= javascript_include_tag 'checkout' %>
+    <a class="return" href=<%= pokemons_path %>> &lt&lt Return </a>
+
+    <%= javascript_include_tag 'checkout', "data-turbo-eval": false %>
+    <%= javascript_include_tag 'cart-quantity', "data-turbo-eval": false %>
+</div>

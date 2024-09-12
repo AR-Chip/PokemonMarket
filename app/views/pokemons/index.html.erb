@@ -6,3 +6,7 @@
     </ul>
     <%= paginate @pokemons %>
 </div>
+
+<%= render "cart" %>
+
+<%= javascript_include_tag 'filter-dropdown', "data-turbo-eval": false %>  <!-- This fixed the javascript firing multiple times problem. -->

@@ -29,12 +29,12 @@ class PokemonsController < ApplicationController
     else
       session[:cart][session[:cart].index { |p| p["id"] == id }]["qty"] = new_quantity
     end
-    redirect_to pokemons_path
+    redirect_to checkout_review_path
   end
 
   def remove_from_cart
     id = params[:id].to_i
     session[:cart].delete_at(session[:cart].index { |p| p["id"] == id })
-    redirect_to pokemons_path
+    redirect_to checkout_review_path
   end
 end

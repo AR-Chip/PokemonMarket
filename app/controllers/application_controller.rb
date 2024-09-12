@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
         @subtotal += pokemon.price * cart_item["qty"]
         @cart << {pokemon: pokemon, qty: cart_item["qty"]}
       end
+
+      @cart_count = 0
+      session[:cart].each do |cart_item|
+        @cart_count += cart_item["qty"]
+      end
+
     end
 
     def configure_permitted_parameters

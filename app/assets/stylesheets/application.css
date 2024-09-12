@@ -252,6 +252,7 @@ option {
 }
 
 .searchbar {
+    margin-top: 1vw;
     width: 50%;
     margin-inline: auto;
     display: flex;
@@ -503,7 +504,7 @@ nav.pagination a {
 
 .home h2 {
     text-align: center;
-    font-size: 2.2vw;
+    font-size: 2.5vw;
     color: black;
     margin: 0;
 }
@@ -584,4 +585,102 @@ nav.pagination a {
     color: white;
     background-image: none;
     background-color: #3fb364;
+}
+
+.cart {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    width: fit-content; 
+}
+
+.cart img {
+    width: 4vw;
+}
+
+.cart p {
+    position: absolute;
+    bottom: 40%;
+    z-index: 3;
+    right: 0%;
+    font-size: 1.1vw;
+    background-color: #3b4cca;
+    color: white;
+    vertical-align: middle;
+    height: 1.5vw;
+    width: 1.5vw;
+    line-height: 1.5vw;
+    text-align: center;
+    border-radius: 50%;
+}
+
+table {
+    margin-inline: auto;
+    text-align: center;
+    width: 80%;
+}
+
+table tr th {
+    font-size: 1.6vw;
+    text-align: center;
+}
+
+table tr th:nth-child(1) {
+    padding-left: 3vw;
+    text-align: left;
+}
+
+table tr td {
+    font-size: 1.2vw;
+    vertical-align: middle;
+}
+
+table tr td a {
+    text-align: left;
+}
+
+.pokemon-details {
+    display: flex;
+    align-items: center;
+}
+
+.pokemon-details img {
+    width: 9vw;
+    margin: 0 1vw 0 0;
+}
+
+.pokemon-details a {
+    display: block;
+}
+
+table input {
+    width: 40%;
+    padding-left: 0.7vw;
+    border-radius: 10px;
+}
+
+.total-calculation {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 9vw;
+    font-size: 1.3vw;
+}
+
+.total-calculation p {
+    margin: 0;
+}
+
+.taxes {
+    margin-left: 0.8vw; 
+}
+
+#checkoutButton {
+    display: block;
+    margin-inline: auto;
+    padding: 0.7vw 0.9vw;
+    color: white;
+    background-color: #3fb364;
+    border: none;
+    background-image: none;
+    font-size: 1.7vw;
 }

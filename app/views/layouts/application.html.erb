@@ -13,7 +13,7 @@
       @import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
     </style>
 
-    <%# <script src="http://js.stripe.com/v3/"></script> %>
+    <script src="http://js.stripe.com/v3/"></script>
   </head>
 
   <body>
@@ -42,39 +42,10 @@
       </div>  
     </header>
 
-    <% unless current_page?(root_path) or current_page?(new_session_path(:user)) or current_page?(new_user_registration_path) %>
-      <p>
-        <details>
-            <summary>Shopping Cart</summary>
-            <% if @cart.empty? %>
-                <p>No items in cart.</p>
-            <% else %>
-              <ul>
-                  <% @cart.each do |cart_item| %>
-                    <li>
-                      <%= form_tag(modify_cart_quantity_path, method: "post") do %>
-                        <%= cart_item[:pokemon].name %> -
-                        <%= number_field_tag(:quantity, cart_item[:qty]) %> pokemons 
-                        <%= submit_tag("Update quantity") %>-
-                        <%= link_to 'Remove', remove_from_cart_path(cart_item[:pokemon]), data: { "turbo-method": :delete } %>
-                        <%= hidden_field_tag(:pokemon_id, cart_item[:pokemon].id) %>
-                      <% end %>
-                    </li>
-                  <% end %>
-              </ul>
-              <p>Subtotal: $<%= @subtotal %></p>
-
-              <%= link_to "Checkout", checkout_review_path %> 
-            <% end %>
-        </details>
-      </p>
-    <% end %>
-
     <%= yield %>
     
+    </div>
     <p class="notice"><%= notice %></p><meta name="turbolinks-cache-control" content="no-cache"> 
     <p class="alert"><%= alert %></p>
-
-    <%= javascript_include_tag 'filter-dropdown', "data-turbo-eval": false %>  <!-- This fixed the javascript firing multiple times problem. -->
   </body>
 </html>

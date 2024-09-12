@@ -4,3 +4,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link checkout.js
 //= link filter-dropdown.js
+//= link cart-quantity.js
